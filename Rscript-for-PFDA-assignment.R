@@ -150,7 +150,6 @@ lines(x8, type = "o", xlab = "Tests", ylab = "Grade Scores", main="Sample of Stu
 lines(x9, type = "o", xlab = "Tests", ylab = "Grade Scores", main="Sample of Students' Scores from G1 to G3", col="#FF00FF", cex=0.75)
 lines(x10, type = "o", xlab = "Tests", ylab = "Grade Scores", main="Sample of Students' Scores from G1 to G3", col="#aa6c39", cex=0.75)
 
-
 v = ggparcoord(studentData,
                columns = 32:34, groupColumn = 1,
                showPoints = TRUE, 
@@ -165,6 +164,16 @@ v = ggparcoord(studentData,
 ggplotly(v)
 
 
+### Analysis 1-4
+## find the relationship between tertiary edu and studyTime with "meanGrade"
+a14 = studentData  %>% 
+  ggplot(aes(x = studyTime, y = meanGrade)) +
+  geom_count(alpha = 0.5) + 
+  ylim(0,20) + 
+  ggtitle("The Relationship of TertiaryEdu and StudyTime with Students' MeanGrade") +
+  facet_grid(~tertiary)
+
+ggplotly(a14)
 
 
 
