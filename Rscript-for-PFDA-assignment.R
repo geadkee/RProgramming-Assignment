@@ -151,5 +151,21 @@ lines(x9, type = "o", xlab = "Tests", ylab = "Grade Scores", main="Sample of Stu
 lines(x10, type = "o", xlab = "Tests", ylab = "Grade Scores", main="Sample of Students' Scores from G1 to G3", col="#aa6c39", cex=0.75)
 
 
+v = ggparcoord(studentData,
+               columns = 32:34, groupColumn = 1,
+               showPoints = TRUE, 
+               title = "The Fluctuation of Students' Math Grade throughout G1-G3",
+               alphaLines = 0.3,
+               scale = "globalminmax") +
+  scale_color_viridis(discrete=TRUE) +
+  theme_ipsum()+
+  theme(
+    plot.title = element_text(size=20)
+  )
+ggplotly(v)
+
+
+
+
 
 
