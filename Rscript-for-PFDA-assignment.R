@@ -331,7 +331,26 @@ ggplotly(a222.25)
 ggplotly(a222.75)
 
 
+### Analysis 2-3
+## differences in studyTime and tertiary of students in Upper & Lower Quartile meanGrades
+a23.25 = meanGrade25 %>% 
+  ggplot(aes(x = studyTime, y = meanGrade)) +
+  geom_jitter(alpha = 0.5) + 
+  ggtitle("StudyTime & Tertiary of Students in Lower-Quartile of MeanGrades") + 
+  ylim(0,20) + 
+  facet_grid(~tertiary)
 
+a23.75 = meanGrade75 %>% 
+  ggplot(aes(x = studyTime, y = meanGrade)) +
+  geom_jitter(alpha = 0.5) + 
+  ggtitle("StudyTime & Tertiary of Students above Higher-Quartile of MeanGrades") + 
+  ylim(0,20) + 
+  facet_grid(~tertiary)
+
+grid.arrange(a23.25, a23.75, ncol = 2)
+
+ggplotly(a23.25)
+ggplotly(a23.75)
 
 
 
