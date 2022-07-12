@@ -176,5 +176,84 @@ a14 = studentData  %>%
 ggplotly(a14)
 
 
+### Analysis 1-5
+## find relationship between meanGrade and schAbsences
+a15 = ggplot(studentData, aes(meanGrade, schAbsences)) + 
+  geom_count(alpha = 0.5, aes(size = ..n..)) +
+  ggtitle("The Relationship between School Absences and Students' MeanGrade")
+
+ggplotly(a15)
+
+
+### Analysis 1-6
+## find relationship between schAbsences and health
+a16 = ggplot(studentData, aes(schAbsences, health)) +
+  geom_count(alpha = 0.5, aes(color = ..n.., size = ..n..)) + 
+  ggtitle("The Relationship between School Absences and Students' Health")
+
+ggplotly(a16) 
+
+
+### Analysis 1-7
+## find relationship between schAbsences and free time
+a17 = ggplot(studentData, aes(freeTime, schAbsences)) +
+  geom_count(alpha = 0.5, aes(color = ..n..)) + 
+  ggtitle("Relationship between School Absences and Free Time")+
+  theme(legend.position = "right")
+
+ggplotly(a17)
+
+
+
+###########################################################################
+#### QUESTION 2
+
+### Analysis 2-1
+## find the quartiles of "meanGrade"
+quantile(studentData$meanGrade, probs = c(0.25, 0.75))
+
+
+## find students who are above the Upper-Quartile & in Lower-Quartile
+meanGradeMale75 = studentData %>% 
+  filter(meanGrade >= 13 & gender == "M") %>%
+  arrange(age)
+meanGradeFemale75 = studentData %>% 
+  filter(meanGrade >= 13 & gender == "F") %>%
+  group_by(age) 
+
+meanGradeMale25 = studentData %>% 
+  filter(meanGrade < 8 & gender == "M") %>%
+  arrange(age)
+meanGradeFemale25 = studentData %>% 
+  filter(meanGrade < 8 & gender == "F") %>%
+  group_by(age) 
+
+studentD75 = data.frame(gender = c("M", "F"), meanGradeGender75 = c(nrow(meanGradeMale75), nrow(meanGradeFemale75)))
+studentD25 = data.frame(gender = c("M", "F"), meanGradeGender25 = c(nrow(meanGradeMale25), nrow(meanGradeFemale25)))
+
+
+## plot bar chart based on the data found
+gg75 = ggplot(studentD75, aes(x = factor(gender), y = meanGradeGender75)) + 
+  geom_col(aes(fill = gender), position = "dodge") + 
+  geom_text(aes(label = meanGradeGender75, y = meanGradeGender75 + 0.05),
+            position = position_dodge(0.9), 
+            vjust = 0) + 
+  scale_x_discrete("Gender Distribution of Students Above the Upper-Quartile of Mean Grades") + 
+  scale_y_continuous("Mean Grade") +
+  theme(legend.position="bottom")
+
+
+gg25 = ggplot(studentD25, aes(x = factor(gender), y = meanGradeGender25)) + 
+  geom_col(aes(fill = gender), position = "dodge") + 
+  geom_text(aes(label = meanGradeGender25, y = meanGradeGender25 + 0.05),
+            position = position_dodge(0.9), 
+            vjust = 0) + 
+  scale_x_discrete("Gender Distribution of Students in the Lower-Quartile of Mean Grades") + 
+  scale_y_continuous("Mean Grade") +
+  theme(legend.position="bottom")
+
+grid.arrange(gg25, gg75, ncol = 2)
+
+
 
 
