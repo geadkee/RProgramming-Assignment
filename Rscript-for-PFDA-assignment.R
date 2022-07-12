@@ -255,5 +255,84 @@ gg25 = ggplot(studentD25, aes(x = factor(gender), y = meanGradeGender25)) +
 grid.arrange(gg25, gg75, ncol = 2)
 
 
+### Analysis 2-2
+## merge the data in Analysis 2-1 into only Upper & Lower Quartile students
+meanGrade25 = rbind.data.frame(meanGradeMale25, meanGradeFemale25)
+meanGrade75 = rbind.data.frame(meanGradeMale75, meanGradeFemale75)
+
+w = ggparcoord(meanGrade25,
+               columns = 32:34, groupColumn = 1,
+               showPoints = TRUE, 
+               title = "The Fluctuation of Students' Math Grade throughout G1-G3",
+               alphaLines = 0.3,
+               scale = "globalminmax") +
+  scale_color_viridis(discrete=TRUE) +
+  theme_ipsum()+
+  theme(
+    plot.title = element_text(size=20)
+  )
+ggplotly(w)
+
+fg = ggparcoord(meanGrade75,
+                columns = 32:34, groupColumn = 1,
+                showPoints = TRUE, 
+                title = "The Fluctuation of Students' Math Grade throughout G1-G3",
+                alphaLines = 0.3,
+                scale = "globalminmax") +
+  scale_color_viridis(discrete=TRUE) +
+  theme_ipsum()+
+  theme(
+    plot.title = element_text(size=20)
+  )
+ggplotly(fg)
+
+
+
+## Analysis 2-2-1
+## differences in schAbsences and freeTime in Upper & Lower Quartile meanGrades
+
+a221.25 = meanGrade25 %>% 
+  count(schAbsences, meanGrade, freeTime) %>%
+  ggplot(aes(x = meanGrade, y = schAbsences)) +
+  geom_tile(mapping = aes(fill = freeTime)) + 
+  ggtitle("FreeTime & Absences of Students in Lower-Quartile of MeanGrades") +
+  scale_fill_viridis(discrete = T)
+
+a221.75 = meanGrade75 %>% 
+  count(schAbsences, meanGrade, freeTime) %>%
+  ggplot(aes(x = meanGrade, y = schAbsences)) +
+  geom_tile(mapping = aes(fill = freeTime)) + 
+  ggtitle("FreeTime & Absences of Students in Upper-Quartile of MeanGrades") +
+  scale_fill_viridis(discrete = T)
+
+ggplotly(a221.25)
+ggplotly(a221.75)
+
+
+## Analysis 2-2-2
+## differences in schAbsences and freeTime and studyTime in Upper & Lower Quartile meanGrades
+a222.25 = meanGrade25 %>% 
+  count(freeTime, meanGrade, schAbsences, studyTime) %>%
+  ggplot(aes(x = meanGrade, y = schAbsences)) +
+  geom_tile(mapping = aes(fill = freeTime)) + 
+  ggtitle("StudyTime & FreeTime & Absences of Students in Lower-Quartile of MeanGrades") +
+  scale_fill_viridis(discrete = T) + 
+  facet_grid(~studyTime)
+
+a222.75 = meanGrade75 %>% 
+  count(freeTime, meanGrade, schAbsences, studyTime) %>%
+  ggplot(aes(x = meanGrade, y = schAbsences)) +
+  geom_tile(mapping = aes(fill = freeTime)) + 
+  ggtitle("StudyTime & FreeTime & Absences of Students above Upper-Quartile of MeanGrades") +
+  scale_fill_viridis(discrete = T) + 
+  facet_grid(~studyTime)
+
+ggplotly(a222.25)
+ggplotly(a222.75)
+
+
+
+
+
 
 
