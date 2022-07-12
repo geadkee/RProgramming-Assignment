@@ -353,5 +353,62 @@ ggplotly(a23.25)
 ggplotly(a23.75)
 
 
+### Analysis 2-4
+## differences in studyTime and homeInternet of students in Upper & Lower Quartile meanGrades
+
+a24.25 = meanGrade25 %>% 
+  ggplot(aes(x = studyTime, y = meanGrade, fill = studyTime)) +
+  geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 0.3) +
+  coord_flip() +
+  xlab("studyTime") + 
+  ylab("meanGrade") +
+  ggtitle("StudyTime & homeInternet of Students in Lower-Quartile") + 
+  facet_grid(~homeInternet)
+
+a24.75 = meanGrade75 %>% 
+  ggplot(aes(x = studyTime, y = meanGrade, fill = studyTime)) +
+  geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 0.3) +
+  coord_flip() +
+  xlab("studyTime") + 
+  ylab("meanGrade") +
+  ggtitle("StudyTime & homeInternet of Students above Upper-Quartile") +
+  facet_grid(~homeInternet)
+
+grid.arrange(a24.25, a24.75, ncol = 2)
+
+
+### Analysis 2-5
+## 
+n = meanGrade25 %>% 
+  ggplot(aes(x = studyTime, y = meanGrade, fill = studyTime)) +
+  geom_violin(stat = "ydensity",
+              position = "dodge",
+              scale = "area") +
+  coord_flip() +
+  xlab("studyTime") + 
+  ylab("meanGrade") +
+  facet_grid(~homeInternet)
+
+
+## Analysis 2-5-1
+## relationship with family size  
+a251.25 = meanGrade25 %>% 
+  ggplot(aes(x = familySize, y = meanGrade)) +
+  geom_boxplot() + 
+  ggtitle("Affects of FamilySize on Students in Lower-Quartile of MeanGrades") + 
+  xlab("Family Size") + 
+  ylab("meanGrade")
+
+ggplotly(a251.25)
+
+a251.75 = meanGrade75 %>% 
+  ggplot(aes(x = familySize, y = meanGrade)) +
+  geom_boxplot() + 
+  ggtitle("Affects of FamilySize on Students above Upper-Quartile of MeanGrades") + 
+  xlab("Family Size") + 
+  ylab("meanGrade")
+
+ggplotly(a251.75)
+
 
 
