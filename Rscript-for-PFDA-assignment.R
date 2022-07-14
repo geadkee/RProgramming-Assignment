@@ -480,3 +480,56 @@ a2531.75 = meanGrade75 %>%
 
 ggplotly(a2531.75)
 
+
+## Analysis 2-5-4
+## relationship with family relation
+
+a254.25 = meanGrade25 %>% 
+  ggplot(aes(x = famRelation, y = meanGrade, fill = famRelation)) +
+  geom_count() + 
+  ggtitle("Affects of familyRelations on Students in Lower-Quartile of MeanGrades") + 
+  xlab("Relationship with Family") + 
+  ylab("meanGrade") +
+  scale_fill_discrete(direction = -1)
+
+ggplotly(a254.25)
+
+a254.75 = meanGrade75 %>% 
+  ggplot(aes(x = famRelation, y = meanGrade, fill = famRelation)) +
+  geom_count() + 
+  ggtitle("Affects of familyRelations on Students above Upper-Quartile of MeanGrades") + 
+  xlab("Relationship with Family") + 
+  ylab("meanGrade") +
+  scale_fill_discrete(direction = -1)
+
+ggplotly(a254.75)
+
+
+## Analysis 2-5-4-1
+## merge with family size
+
+a2541.25 = meanGrade25 %>% 
+  ggplot(aes(x = famRelation, y = meanGrade, fill = famRelation)) +
+  geom_count() + 
+  ggtitle("Affects of familyRelations on Students in Lower-Quartile of MeanGrades") + 
+  xlab("Relationship with Family") + 
+  ylab("meanGrade") +
+  scale_fill_discrete(direction = -1) + 
+  facet_grid(~familySize)
+
+ggplotly(a2541.25)
+
+a2541.75 = meanGrade75 %>% 
+  ggplot(aes(x = famRelation, y = meanGrade, fill = famRelation)) +
+  geom_count() + 
+  ggtitle("Affects of familyRelations on Students above Upper-Quartile of MeanGrades") + 
+  xlab("Relationship with Family") + 
+  ylab("meanGrade") +
+  scale_fill_discrete(direction = -1) + 
+  facet_grid(~familySize)
+
+ggplotly(a2541.75)
+
+
+
+
