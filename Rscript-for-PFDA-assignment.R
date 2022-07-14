@@ -25,7 +25,7 @@ options(max.print = 10000)
 # Analysis 1-2: Find the relationship between study time and ..
 # Analysis 1-3: Find the relationship between .
 
-studentOriData = read.csv("C:\\Users\\Gead Kee\\Desktop\\RStudio\\Gan_Gead_Kee-TP057261\\student.csv")
+studentOriData = read.csv("C:\\Users\\Gead Kee\\Desktop\\RStudio\\RProgramming-Assignment\\student.csv")
 
 viewD = function(f1){
   View(f1)
