@@ -530,6 +530,29 @@ a2541.75 = meanGrade75 %>%
 
 ggplotly(a2541.75)
 
+grid.arrange(a2541.25, a2541.75, ncol = 2)
+
+
+## Analysis 2-5-5
+## relationship with family educational support
+a255.25 = meanGrade25 %>% 
+  ggplot(aes(x = familySupport , y = meanGrade, fill = familySupport)) +
+  geom_count() + 
+  ggtitle("Affects of familyEduSupport on Students in Lower-Quartile of MeanGrades") + 
+  xlab("Family Educational Support") + 
+  ylab("meanGrade")
+
+ggplotly(a255.25)
+
+a255.75 = meanGrade75 %>% 
+  ggplot(aes(x = familySupport, y = meanGrade, fill = familySupport)) +
+  geom_count() + 
+  ggtitle("Affects of familyEduSupport on Students above Upper-Quartile of MeanGrades") + 
+  xlab("Family Educational Support") + 
+  ylab("meanGrade")
+
+ggplotly(a255.75)
+
 
 
 
