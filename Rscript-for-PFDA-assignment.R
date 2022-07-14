@@ -554,5 +554,66 @@ a255.75 = meanGrade75 %>%
 ggplotly(a255.75)
 
 
+## Analysis 2-5-5-1
+## merge with family size
+a2551.25 = meanGrade25 %>% 
+  ggplot(aes(x = familySupport , y = meanGrade, fill = familySupport)) +
+  geom_count() + 
+  ggtitle("Affects of familyEduSupport and familySize on Students in Lower-Quartile of MeanGrades") + 
+  xlab("Family Educational Support") + 
+  ylab("meanGrade") +
+  facet_grid(~familySize)
+
+ggplotly(a2551.25)
+
+a2551.75 = meanGrade75 %>% 
+  ggplot(aes(x = familySupport, y = meanGrade, fill = familySupport)) +
+  geom_count() + 
+  ggtitle("Affects of familyEduSupport and familySize on Students above Upper-Quartile of MeanGrades") + 
+  xlab("Family Educational Support") + 
+  ylab("meanGrade") +
+  facet_grid(~familySize)
+
+ggplotly(a2551.75)
+
+
+
+#########################################################
+
+### Question 3
+## Analysis 3-1 
+
+aggregate(meanGrade ~ weekdayAlc, data = studentData, mean) %>%   arrange(desc(meanGrade))
+
+aggregate(meanGrade ~ weekendAlc, data = studentData, mean) %>%   arrange(desc(meanGrade))
+
+
+
+
+
+# studentData1 = studentData %>% 
+#   mutate(noImprov = ifelse(g2 < g1, 1, 0), stag = ifelse(g2 == g1, 1, 0), improv = ifelse(g2 > g1, 1, 0)) %>% 
+#   filter(gender == "F" | gender == "M") %>% 
+#   group_by(age) %>% 
+#   summarise(improved = sum(improv), stagnant = sum(stag), noimprove = sum(noImprov))
+# 
+# studentData2 = studentData %>% 
+#   mutate(noImprov = ifelse(g3 < g2, 1, 0), stag = ifelse(g3 == g2, 1, 0), improv = ifelse(g3 > g2, 1, 0)) %>% 
+#   filter(gender == "F" | gender == "M") %>% 
+#   group_by(age) %>% 
+#   summarise(improved = sum(improv), stagnant = sum(stag), noimprove = sum(noImprov))
+# 
+# studentData3 = studentData %>% 
+#   mutate(noImprov = ifelse(g3 < g1, 1, 0), stag = ifelse(g3 == g1, 1, 0), improv = ifelse(g3 > g1, 1, 0)) %>% 
+#   filter(gender == "F" | gender == "M") %>% 
+#   group_by(age) %>% 
+#   summarise(improved = sum(improv), stagnant = sum(stag), noimprove = sum(noImprov))
+# 
+# viewD(studentData1)
+# viewD(studentData2)
+# viewD(studentData3)
+
+
+
 
 
