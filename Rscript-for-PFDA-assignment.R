@@ -456,4 +456,27 @@ a253.75 = meanGrade75 %>%
 
 ggplotly(a253.75)
 
+## Analysis 2-5-3-1
+## merge with parentStatus
+a2531.25 = meanGrade25 %>% 
+  ggplot(aes(x = guardian, y = meanGrade, fill = guardian)) +
+  geom_count() + 
+  ggtitle("Affects of Guardians and parentStatus on Students in Lower-Quartile") + 
+  xlab("Guardians of Students") + 
+  ylab("meanGrade") +
+  scale_fill_viridis(discrete=TRUE, direction = -1) +
+  facet_grid(~parentsStatus)
+
+ggplotly(a2531.25)
+
+a2531.75 = meanGrade75 %>% 
+  ggplot(aes(x = guardian, y = meanGrade, fill = guardian)) +
+  geom_count() + 
+  ggtitle("Affects of Guardians and parentStatus on Students above Upper-Quartile of MeanGrades") + 
+  xlab("Guardians") + 
+  ylab("meanGrade") +
+  scale_fill_viridis(discrete=TRUE, direction = -1) +
+  facet_grid(~parentsStatus)
+
+ggplotly(a2531.75)
 
